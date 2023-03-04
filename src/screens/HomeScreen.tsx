@@ -1,25 +1,25 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View, ActivityIndicator } from 'react-native'
+import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
-import { ActivityIndicator } from 'react-native/Libraries/Components/ActivityIndicator/ActivityIndicator';
 
 export const HomeScreen = () => {
 
   const { peliculasEnCine, isLoading } = useMovies();
+  // console.log(peliculasEnCine[1]?.title)
 
   if(isLoading){
     return(
-      <View>
+      <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
         <ActivityIndicator color={"red"} size={100} />
       </View>
     )
   }
 
-  // console.log(peliculasEnCine[0]?.title)
 
   return (
     <View>
-        <Text>Home Screen</Text>
+      <MoviePoster />
     </View>
   )
 }
