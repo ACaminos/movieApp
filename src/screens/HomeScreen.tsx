@@ -3,7 +3,7 @@ import { View, ActivityIndicator } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
-
+import Carousel from 'react-native-snap-carousel';
 export const HomeScreen = () => {
 
   const { peliculasEnCine, isLoading } = useMovies();
@@ -22,7 +22,13 @@ export const HomeScreen = () => {
 
   return (
     <View style={{marginTop: top + 20}}>
-      <MoviePoster movie={peliculasEnCine[0]} />
+      {/* <MoviePoster movie={peliculasEnCine[0]} /> */}
+      <Carousel
+        data={ peliculasEnCine }
+        renderItem= { () => <MoviePoster movie={ peliculasEnCine[0] } />}
+        sliderWidth={ 350 }
+        itemWidth= {300 }
+      />
     </View>
   )
 }
