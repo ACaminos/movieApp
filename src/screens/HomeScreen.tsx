@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, ActivityIndicator, Dimensions } from 'react-native'
+import { View, ActivityIndicator, Dimensions, FlatList, Text, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
 import Carousel from 'react-native-snap-carousel';
+import { HorizontalSlider } from '../components/horizontalSlider';
 
 const {width : windowWidth} = Dimensions.get('window');
 
@@ -23,17 +24,23 @@ export const HomeScreen = () => {
 
 
   return (
-    <View style={{marginTop: top + 20}}>
-      {/* <MoviePoster movie={peliculasEnCine[0]} /> */}
+    <ScrollView>
+      <View style={{marginTop: top + 20}}>
 
-      <View style={{height:440}}>
-        <Carousel
-          data={ peliculasEnCine }
-          renderItem= { ({item}:any) => <MoviePoster movie={ item } />}
-          sliderWidth={ windowWidth }
-          itemWidth= {300 }
-        />
+      {/* Carousel Principal */}
+        <View style={{height:440}}>
+          <Carousel
+            data = { peliculasEnCine }
+            renderItem = { ( { item } : any ) => <MoviePoster movie = { item } /> }
+            sliderWidth = { windowWidth }
+            itemWidth = { 300 }
+          />
+        </View>
+
+        {/* Peliculas Populares */}
+        <HorizontalSlider title="En cine" movies={peliculasEnCine} />
       </View>
-    </View>
+
+    </ScrollView>
   )
 }
