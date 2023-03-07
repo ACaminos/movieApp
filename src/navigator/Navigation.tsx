@@ -1,8 +1,14 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { DetailScreen } from '../screens/DetailScreen';
 import { HomeScreen } from '../screens/HomeScreen';
+import { Movie } from '../interfaces/movieInterfaces';
 
-const Stack = createStackNavigator();
+export type RootStackParams = {
+  HomeScreen: undefined; //Undefined porque no recibe ningun argumento.
+  DetailScreen: Movie; //Detail recibe una pelicula como argumento. Movie proviene de la interfaz armada en moveInterfaces.
+}
+
+const Stack = createStackNavigator<RootStackParams>();
 
 export const Navigation = () => {
   return (

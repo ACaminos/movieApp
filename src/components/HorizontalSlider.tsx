@@ -12,17 +12,18 @@ interface Props {
 export const HorizontalSlider = ( { title, movies } : Props ) => {
 
   return (
-    <View style={ { 
+    <View style={ {
         height: (title) ? 250 : 230 } }>
         {
-            title && <Text style={ { fontSize: 30, fontWeight: 'bold', marginLeft: 10, color:'black' } }>{title}</Text>
+            title && <Text style={ { fontSize: 30, fontWeight: 'bold', marginLeft: 10, marginBottom:10 } }>{title}</Text>
         }
         <FlatList
-        data={ movies }
-        renderItem= { ( { item } : any ) => ( <MoviePoster movie={ item } width={ 140 } height={ 200 } /> ) }
-        keyExtractor={ ( item ) => item.id.toString() }
-        horizontal={ true }
-        showsHorizontalScrollIndicator={ false } />
+          data={ movies }
+          renderItem= { ( { item } : any ) => ( <MoviePoster movie={ item } width={ 140 } height={ 200 } /> ) }
+          keyExtractor={ ( item ) => item.id.toString() }
+          horizontal={ true }
+          showsHorizontalScrollIndicator={ false }
+        />
     </View>
   )
 }

@@ -12,7 +12,13 @@ interface MovieState {
 export const useMovies = () => {
 
     const [isLoading, setIsLoading] = useState(true)
-    const [moviesState, setMoviesState ] = useState<MovieState[]>([])
+    const [moviesState, setMoviesState ] = useState<MovieState[]>({
+      // se define este objeto y a cada uno se inicializa como arreglo vacio.
+      nowPlaying: [],
+      popular: [],
+      topRated: [],
+      upcoming: [],
+    })
 
 
     const getMovies = async () => {
