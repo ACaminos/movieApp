@@ -3,6 +3,7 @@ import React from 'react'
 import { Text, View, Image, StyleSheet, Dimensions } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
 import { RootStackParams } from '../navigator/Navigation';
+import Icon from "react-native-vector-icons/Ionicons";
 
 const screenHeight = Dimensions.get('screen').height
 
@@ -27,6 +28,9 @@ export const DetailScreen = ( { route } : Props ) => {
       <View style={styles.marginContainer}>
         <Text style={styles.subtitle}>{movie.original_title}</Text>
         <Text style={styles.title}>{movie.title}</Text>
+      </View>
+      <View style={styles.marginContainer}>
+        <Icon name='star-outline' size={20} color="grey" />
       </View>
     </ScrollView>
   )
