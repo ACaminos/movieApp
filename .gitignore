@@ -63,4 +63,4 @@ yarn-error.log
 .metro-health-check*
 
 #file that includes the api key
-**/src/api/movieDB.tsx
+/src/api/movieDB.tsx
