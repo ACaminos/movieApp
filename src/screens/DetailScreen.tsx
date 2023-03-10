@@ -1,8 +1,8 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
-import { Text, View, Image, StyleSheet, Dimensions, ActivityIndicator } from 'react-native'
+import { Text, View, Image, StyleSheet, Dimensions, ActivityIndicator, TouchableOpacity } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
-import { RootStackParams } from '../navigator/Navigation';
+import { Navigation, RootStackParams } from '../navigator/Navigation';
 import Icon from "react-native-vector-icons/Ionicons";
 import {UseMovieDetails} from '../hooks/UseMovieDetails';
 import { MovieDetails } from '../components/MovieDetails';
@@ -13,12 +13,12 @@ interface Props extends StackScreenProps<RootStackParams,'DetailScreen'> {
 
 }
 
-export const DetailScreen = ( { route } : Props ) => {
+export const DetailScreen = ( { route, navigation } : Props ) => {
 
   const movie = route.params;
   const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
-  const { isLoading, cast, movieFull } =UseMovieDetails(movie.id)
+  const { isLoading, cast, movieFull } = UseMovieDetails(movie.id)
 
   console.log({cast})
 
@@ -42,6 +42,11 @@ export const DetailScreen = ( { route } : Props ) => {
               :
             <MovieDetails movieFull={ movieFull! } cast={ cast }/>
         }
+
+        {/* Boton para cerrar */}
+        <TouchableOpacity onPress={ () => navigation.pop() } style={styles.backButton}>
+          <Icon name="arrow-back-outline" size={50} color={'white'} />
+        </TouchableOpacity>
 
     </ScrollView>
   )
@@ -84,5 +89,12 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderBottomEndRadius: 25,
     borderBottomStartRadius: 25
+  },
+  backButton: {
+    position: 'absolute',
+    zIndex: 999,
+    elevation: 9,
+    top: 10,
+    left: 5
   }
 })
